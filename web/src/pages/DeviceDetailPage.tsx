@@ -283,7 +283,13 @@ export function DeviceDetailPage() {
   const networkRows: Row[] = [
     { k: 'Type', v: orDash(teleStr(dyn.networkType) ?? teleStr(dyn.network)) },
     { k: 'Local IP', v: orDash(teleStr(dyn.localIp) ?? teleStr(hw.localIp)), mono: true },
-    { k: 'Public IP', v: orDash(teleStr((tele as Record<string, unknown> | null)?.publicIp) ?? device.publicIp), mono: true },
+    {
+      k: 'Observed source IP',
+      v: <span title="Address observed by the server or trusted reverse proxy; it may be a private router/proxy address rather than the device’s public internet address.">
+        {orDash(teleStr((tele as Record<string, unknown> | null)?.publicIp) ?? device.publicIp)}
+      </span>,
+      mono: true,
+    },
   ];
   const managementRows: Row[] = [
     { k: 'Config', v: configName },
