@@ -70,9 +70,10 @@
 
     <insert id="insertDevice" parameterType="Device" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO devices(number, description, lastUpdate, configurationId,
-            imei, phone, customerId, custom1, custom2, custom3, oldNumber, fastSearch)
+            imei, phone, customerId, custom1, custom2, custom3, oldNumber, fastSearch, enrollTime)
         VALUES (#{number}, #{description}, #{lastUpdate}, #{configurationId},
-            #{imei}, #{phone}, #{customerId}, #{custom1}, #{custom2}, #{custom3}, #{oldNumber}, #{fastSearch});
+            #{imei}, #{phone}, #{customerId}, #{custom1}, #{custom2}, #{custom3}, #{oldNumber}, #{fastSearch},
+            COALESCE(#{enrollTime}, CAST(EXTRACT(EPOCH FROM NOW()) * 1000 AS BIGINT)));
     </insert>
 
     <update id="updateDevice" parameterType="Device">

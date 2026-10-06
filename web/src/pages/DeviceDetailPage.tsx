@@ -289,7 +289,12 @@ export function DeviceDetailPage() {
     { k: 'Config', v: configName },
     { k: 'Agent', v: orDash(ds?.agentVersion ?? device.launcherVersion) },
     { k: 'MDM mode', v: onOff(sec.isDeviceOwner, device.mdmMode) },
-    { k: 'Enrolled', v: fmtDateTime(device.enrollTime) },
+    {
+      k: 'Enrolled',
+      v: device.enrollTime
+        ? fmtDateTime(device.enrollTime)
+        : <span title="This device was enrolled before the server recorded enrollment timestamps.">Not recorded</span>,
+    },
   ];
 
   const loc = dyn.location as
