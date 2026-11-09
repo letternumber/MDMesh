@@ -22,6 +22,8 @@ New
 - Sync now and console commands say when the device isn't connected and will get it at its next check-in.
 
 Fixes
+- The console recognizes an on-device Return to kiosk and does not offer the same action again; a later kiosk exit,
+  custom kiosk, or configuration apply makes it available again.
 - Audit log: on Docker installs, entries show the client's address instead of the edge container's (thanks
   @Przemek-Magic).
 
